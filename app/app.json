@@ -1,0 +1,18 @@
+{
+  "expo": {
+    "name": "오늘의 증시",
+    "slug": "stock-alert",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.example.stockalert"
+    },
+    "plugins": ["expo-notifications"],
+    "extra": {
+      "dataUrl": "https://raw.githubusercontent.com/<GitHub아이디>/stock-alert/main/data/latest.json"
+    }
+  }
+}

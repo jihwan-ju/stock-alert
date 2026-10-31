@@ -1,0 +1,67 @@
+name: 증시 마감 알림
+
+on:
+  schedule:
+    # GitHub cron은 UTC 기준입니다. (한국시간 = UTC+9, 서머타임 없음)
+    - cron: '5 7 * * 1-5'    # 평일 16:05 KST → 한국 증시 마감 (15:30 마감)
+    - cron: '15 21 * * 1-5'  # 평일 06:15 KST(다음날) → 미국 증시 마감 (서머타임 무관)
+  workflow_dispatch:
+    inputs:
+      market:
+        description: 'kr 또는 us'
+        required: true
+        default: 'kr'
+      force:
+        description: '휴장일 판단 무시 (true/false)'
+        required: false
+        default: 'false'
+
+permissions:
+  contents: write  # data/latest.json 커밋용
+
+concurrency:
+  group: market-alert
+  cancel-in-progress: false
+
+jobs:
+  alert:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: server/package-lock.json
+
+      - name: 시장 결정
+        id: m
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "market=${{ inputs.market }}" >> "$GITHUB_OUTPUT"
+            [ "${{ inputs.force }}" = "true" ] && echo "extra=--force" >> "$GITHUB_OUTPUT"
+          elif [ "${{ github.event.schedule }}" = "5 7 * * 1-5" ]; then
+            echo "market=kr" >> "$GITHUB_OUTPUT"
+          else
+            echo "market=us" >> "$GITHUB_OUTPUT"
+          fi
+
+      - run: npm ci
+        working-directory: server
+
+      - name: 시세 수집 · AI 요약 · 푸시 발송
+        working-directory: server
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          EXPO_PUSH_TOKENS: ${{ secrets.EXPO_PUSH_TOKENS }}
+          EXPO_ACCESS_TOKEN: ${{ secrets.EXPO_ACCESS_TOKEN }}
+        run: node src/index.js ${{ steps.m.outputs.market }} ${{ steps.m.outputs.extra }}
+
+      - name: 앱용 데이터 커밋
+        run: |
+          git config user.name "market-bot"
+          git config user.email "market-bot@users.noreply.github.com"
+          git add data/latest.json
+          git diff --cached --quiet || git commit -m "data: ${{ steps.m.outputs.market }} $(TZ=Asia/Seoul date +%F)"
+          git push
