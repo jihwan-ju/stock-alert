@@ -62,7 +62,7 @@ node src/index.js us --dry-run --force
 
 ## 3단계: iPhone 앱 실행
 
-1. `app/app.json`의 `extra.dataUrl`에서 `<GitHub아이디>`를 본인 아이디로 바꿉니다.
+1. `app/app.json`의 `extra.dataUrl`에서 `jihwan-ju`를 본인 아이디로 바꿉니다.
 2. `ios.bundleIdentifier`를 고유한 값으로 바꿉니다 (예: `com.내이름.stockalert`).
 3. Expo 계정을 만들고 프로젝트를 연결합니다.
 
