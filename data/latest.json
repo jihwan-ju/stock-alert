@@ -70,5 +70,40 @@
     ],
     "summary": null
   },
-  "updatedAt": "2026-11-03T02:56:16.426Z"
+  "updatedAt": "2026-11-03T14:55:48.734Z",
+  "kr": {
+    "title": "한국 증시 마감",
+    "date": "2026-11-03",
+    "updatedAt": "2026-11-03T14:55:48.734Z",
+    "quotes": [
+      {
+        "symbol": "^KS11",
+        "name": "KOSPI",
+        "kind": "index",
+        "price": 5648.79,
+        "change": -210.29007812500004,
+        "changePct": -3.5891313196097543,
+        "text": "KOSPI 5,648.79 (-3.59%)"
+      },
+      {
+        "symbol": "^KQ11",
+        "name": "KOSDAQ",
+        "kind": "index",
+        "price": 704.39,
+        "change": -29.969985351562514,
+        "changePct": -4.081102722013767,
+        "text": "KOSDAQ 704.39 (-4.08%)"
+      },
+      {
+        "symbol": "KRW=X",
+        "name": "원/달러",
+        "kind": "fx",
+        "price": 1342.91,
+        "change": 17.389980468750082,
+        "changePct": 1.311936463615222,
+        "text": "원/달러 1,342.9원 (+17.4)"
+      }
+    ],
+    "summary": null
+  }
 }
