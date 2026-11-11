@@ -70,38 +70,38 @@
     ],
     "summary": null
   },
-  "updatedAt": "2026-11-11T01:16:15.715Z",
+  "updatedAt": "2026-11-11T14:59:34.377Z",
   "kr": {
     "title": "한국 증시 마감",
-    "date": "2026-11-06",
-    "updatedAt": "2026-11-06T14:52:59.465Z",
+    "date": "2026-11-11",
+    "updatedAt": "2026-11-11T14:59:34.377Z",
     "quotes": [
       {
         "symbol": "^KS11",
         "name": "KOSPI",
         "kind": "index",
-        "price": 5059.69,
-        "change": -324.1098046875004,
-        "changePct": -6.0200939196384775,
-        "text": "KOSPI 5,059.69 (-6.02%)"
+        "price": 5375.36,
+        "change": 136.23011718749967,
+        "changePct": 2.6002431746236425,
+        "text": "KOSPI 5,375.36 (+2.60%)"
       },
       {
         "symbol": "^KQ11",
         "name": "KOSDAQ",
         "kind": "index",
-        "price": 644.27,
-        "change": -34.13997314453127,
-        "changePct": -5.032351306141242,
-        "text": "KOSDAQ 644.27 (-5.03%)"
+        "price": 705.1,
+        "change": 37.49001464843752,
+        "changePct": 5.615556308477821,
+        "text": "KOSDAQ 705.10 (+5.62%)"
       },
       {
         "symbol": "KRW=X",
         "name": "원/달러",
         "kind": "fx",
-        "price": 1362.18,
-        "change": 22.110053710937564,
-        "changePct": 1.6499178846719893,
-        "text": "원/달러 1,362.2원 (+22.1)"
+        "price": 1338.78,
+        "change": -5.059965820312527,
+        "changePct": -0.37653038672828887,
+        "text": "원/달러 1,338.8원 (-5.1)"
       }
     ],
     "summary": null
